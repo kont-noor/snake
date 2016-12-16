@@ -7,7 +7,8 @@ void setup() {
 }
 
 void loop() {
-  gameSnake.moveLeft();
+  gameSnake.moveUp();
+  delay(300);
 }
 
 __attribute__((constructor)) void premain() {

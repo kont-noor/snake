@@ -11,4 +11,11 @@ public:
 private:
   uint8_t direction;
   field gameField;
+
+  uint16_t size;
+  uint8_t body[1000][2];
+  uint8_t buffBody[1000][2];
+
+  void redraw();
+  void clearLast();
 };
