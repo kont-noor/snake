@@ -21,6 +21,31 @@ void snake::moveUp() {
   clearLast();
   buffBody[0][0] = body[0][0];
   buffBody[0][1] = (body[0][1] == 0) ? 11 : body[0][1] - 1;
+  move();
+}
+
+void snake::moveDown() {
+  clearLast();
+  buffBody[0][0] = body[0][0];
+  buffBody[0][1] = (body[0][1] == 11) ? 0 : body[0][1] + 1;
+  move();
+}
+
+void snake::moveRight() {
+  clearLast();
+  buffBody[0][0] = (body[0][0] == 20) ? 0 : body[0][0] + 1;
+  buffBody[0][1] = body[0][1];
+  move();
+}
+
+void snake::moveLeft() {
+  clearLast();
+  buffBody[0][0] = (body[0][0] == 0) ? 20 : body[0][0] - 1;
+  buffBody[0][1] = body[0][1];
+  move();
+}
+
+void snake::move(){
   gameField.putPosition(buffBody[0][0], buffBody[0][1]);
   gameField.redraw();
 

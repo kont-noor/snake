@@ -18,4 +18,5 @@ private:
 
   void redraw();
   void clearLast();
+  void move();
 };
