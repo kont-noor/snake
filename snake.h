@@ -10,13 +10,17 @@ public:
   void moveDown();
 private:
   uint8_t direction;
+  bool stopped;
   field gameField;
 
   uint16_t size;
-  uint8_t body[1000][2];
-  uint8_t buffBody[1000][2];
+  // TODO: currently snake size is restricted by 10
+  uint8_t body[10][2];
+  uint8_t buffBody[10][2];
 
   void redraw();
   void clearLast();
   void move();
+  bool checkSelfCollision();
+  void notifyDead();
 };

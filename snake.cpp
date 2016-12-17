@@ -12,11 +12,12 @@ void snake::init() {
     body[i][1] = i + 1;
   }
 
+  stopped = false;
+
   redraw();
 }
 
 void snake::moveUp() {
-  clearLast();
   buffBody[0][0] = body[0][0];
   buffBody[0][1] = (body[0][1] == 0) ? 11 : body[0][1] - 1;
   move();
@@ -30,20 +31,23 @@ void snake::moveDown() {
 }
 
 void snake::moveRight() {
-  clearLast();
   buffBody[0][0] = (body[0][0] == 20) ? 0 : body[0][0] + 1;
   buffBody[0][1] = body[0][1];
   move();
 }
 
 void snake::moveLeft() {
-  clearLast();
   buffBody[0][0] = (body[0][0] == 0) ? 20 : body[0][0] - 1;
   buffBody[0][1] = body[0][1];
   move();
 }
 
 void snake::move(){
+  if (stopped || checkSelfCollision())
+    return;
+
+  clearLast();
+
   gameField.putPosition(buffBody[0][0], buffBody[0][1]);
   gameField.redraw();
 
@@ -60,10 +64,32 @@ void snake::move(){
   redraw();
 }
 
-void snake::redraw() {
+bool snake::checkSelfCollision() {
   for (uint16_t i = 0; i < size; i++) {
-    gameField.putPosition((uint8_t)body[i][0], (uint8_t)body[i][1]);
+    if (body[i][0] == buffBody[0][0] && body[i][1] == buffBody[0][1]) {
+      stopped = true;
+      notifyDead();
+      return true;
+    }
   }
+
+  return false;
+}
+
+void snake::notifyDead() {
+  for (uint8_t i = 0; i < 3; i++) {
+    delay(400);
+    for (uint16_t i = 0; i < size; i++)
+      gameField.removePosition((uint8_t)body[i][0], (uint8_t)body[i][1]);
+    gameField.redraw();
+    delay(400);
+    redraw();
+  }
+}
+
+void snake::redraw() {
+  for (uint16_t i = 0; i < size; i++)
+    gameField.putPosition((uint8_t)body[i][0], (uint8_t)body[i][1]);
   gameField.redraw();
 }
 

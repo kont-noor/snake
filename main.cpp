@@ -10,6 +10,7 @@ bool i = false;
 uint8_t direction;
 
 void setup() {
+  randomSeed(analogRead(0));
   gameSnake.init();
 }
 
@@ -36,7 +37,7 @@ void moveVertical() {
 }
 
 void loop() {
-  if (!random(5))
+  if (random(4))
     i = !i;
 
   i ? moveHorizontal() : moveVertical();
