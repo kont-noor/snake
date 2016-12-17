@@ -1,32 +1,45 @@
 #include "snake.h"
 
+#define DIRECTION_UP 0
+#define DIRECTION_DOWN 1
+#define DIRECTION_LEFT 2
+#define DIRECTION_RIGHT 3
+
 snake gameSnake;
-uint8_t i = 0;
+bool i = false;
+uint8_t direction;
 
 void setup() {
   gameSnake.init();
 }
 
+void moveHorizontal() {
+  if (direction == DIRECTION_LEFT || random(0xffff) % 2) {
+    gameSnake.moveLeft();
+    direction = DIRECTION_LEFT;
+  }
+  else {
+    gameSnake.moveRight();
+    direction = DIRECTION_RIGHT;
+  }
+}
+
+void moveVertical() {
+  if (direction == DIRECTION_UP || random(0xffff) % 2) {
+    gameSnake.moveUp();
+    direction = DIRECTION_UP;
+  }
+  else {
+    gameSnake.moveDown();
+    direction = DIRECTION_DOWN;
+  }
+}
+
 void loop() {
   if (!random(5))
-    i++;
+    i = !i;
 
-  switch (i) {
-    case 0:
-      gameSnake.moveUp();
-      break;
-    case 1:
-      gameSnake.moveRight();
-      break;
-    case 2:
-      gameSnake.moveDown();
-      break;
-    case 3:
-      gameSnake.moveLeft();
-      break;
-    default:
-      i = 0;
-  }
+  i ? moveHorizontal() : moveVertical();
 
   delay(200);
 }

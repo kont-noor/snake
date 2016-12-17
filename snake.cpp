@@ -5,14 +5,12 @@ snake::snake() {}
 void snake::init() {
   gameField.init();
 
-  size = 3;
+  size = 10;
 
-  body[0][0] = 10;
-  body[1][0] = 10;
-  body[2][0] = 10;
-  body[0][1] = 5;
-  body[1][1] = 6;
-  body[2][1] = 7;
+  for (uint8_t i = 0; i < size; i++) {
+    body[i][0] = 10;
+    body[i][1] = i + 1;
+  }
 
   redraw();
 }
