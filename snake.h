@@ -21,13 +21,16 @@ private:
 
   uint16_t size;
   // TODO: currently snake size is restricted by 10
-  uint8_t body[10][2];
-  uint8_t buffBody[10][2];
+  uint8_t body[100][2];
+  uint8_t buffBody[100][2];
+  uint8_t feed[2];
 
   void redraw();
   void clearLast();
   bool checkSelfCollision();
+  bool checkCollisionWith(uint8_t*);
   void notifyDead();
   void getNextPosition();
   void reverse();
+  void setFeed();
 };
