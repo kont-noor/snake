@@ -2,6 +2,8 @@
 
 snake gameSnake;
 uint8 input;
+int previousMillis = 0;
+int interval = 300;
 
 void setup() {
   gameSnake.init();
@@ -24,6 +26,12 @@ void loop() {
         gameSnake.moveRight();
         break;
     }
+  }
+
+  if (millis() - previousMillis > interval) {
+    previousMillis = millis();
+
+    gameSnake.move();
   }
 }
 

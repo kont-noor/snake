@@ -1,5 +1,10 @@
 #include "field.h"
 
+#define DIRECTION_UP 0
+#define DIRECTION_DOWN 1
+#define DIRECTION_LEFT 2
+#define DIRECTION_RIGHT 3
+
 class snake {
 public:
   snake();
@@ -8,6 +13,7 @@ public:
   void moveRight();
   void moveUp();
   void moveDown();
+  void move();
 private:
   uint8_t direction;
   bool stopped;
@@ -20,7 +26,8 @@ private:
 
   void redraw();
   void clearLast();
-  void move();
   bool checkSelfCollision();
   void notifyDead();
+  void getNextPosition();
+  void reverse();
 };
