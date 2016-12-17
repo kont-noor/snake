@@ -75,9 +75,9 @@ void snake::reverse() {
       direction = DIRECTION_DOWN;
   else
     if (body[0][0] < body[1][0])
-      direction = DIRECTION_RIGHT;
-    else
       direction = DIRECTION_LEFT;
+    else
+      direction = DIRECTION_RIGHT;
 }
 
 void snake::move(){
