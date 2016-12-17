@@ -1,26 +1,34 @@
 #include "snake.h"
 
 snake gameSnake;
-int i = 0;
+uint8_t i = 0;
 
 void setup() {
   gameSnake.init();
 }
 
 void loop() {
-  if (i < 50)
-    gameSnake.moveUp();
-  else if (i >=50 && i < 100)
-    gameSnake.moveRight();
-  else if (i >= 100 && i < 150)
-    gameSnake.moveDown();
-  else if (i >= 150 && i < 200)
-    gameSnake.moveLeft();
-  else
-    i = 0;
+  if (!random(5))
+    i++;
+
+  switch (i) {
+    case 0:
+      gameSnake.moveUp();
+      break;
+    case 1:
+      gameSnake.moveRight();
+      break;
+    case 2:
+      gameSnake.moveDown();
+      break;
+    case 3:
+      gameSnake.moveLeft();
+      break;
+    default:
+      i = 0;
+  }
 
   delay(200);
-  i++;
 }
 
 __attribute__((constructor)) void premain() {
