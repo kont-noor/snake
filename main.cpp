@@ -28,6 +28,7 @@ void loop() {
     }
   }
 
+  // TODO: delay works worse but it fixes breaking head
   if (millis() - previousMillis > interval) {
     previousMillis = millis();
 
