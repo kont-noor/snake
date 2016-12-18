@@ -11,6 +11,7 @@ public:
   void redraw();
   void putPosition(uint8_t, uint8_t);
   void removePosition(uint8_t, uint8_t);
+  void showStartup();
 private:
   screen display;
 };

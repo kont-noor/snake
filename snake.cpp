@@ -6,6 +6,8 @@ void snake::init() {
   randomSeed(analogRead(0));
   gameField.init();
 
+  gameField.showStartup();
+
   size = 2;
 
   for (uint8_t i = 0; i < size; i++) {

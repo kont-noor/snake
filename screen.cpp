@@ -32,6 +32,10 @@ void screen::redraw() {
   }
 }
 
+void screen::drawBitmap(uint8_t* map) {
+  lcd.bitmap(map, 6, 84);
+}
+
 void screen::redrawByte(uint8_t col, uint8_t row) {
   uint8_t byte = 0;
   //TODO: probably add flag array and set it on change pixel

@@ -161,7 +161,8 @@ void pcd8544::clearRestOfLine(void)
 
 void pcd8544::bitmap(uint8_t bdata[], uint8_t rows, uint8_t columns)
 {
-	uint8_t row, column, i;
+	uint8_t row, column;
+	uint16_t i;
 	uint8_t toprow = current_row;
 	uint8_t startcolumn = current_column;
 	for (row = 0, i = 0; row < rows; row++) {
