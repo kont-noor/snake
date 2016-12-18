@@ -2,25 +2,17 @@
 #define PCD8544_H
 
 #include <stdint.h>
-#include <Print.h>
-
 
 #include <WProgram.h> // Arduino 0022
-#define WRITE_RESULT void
-#define WRITE_RETURN
-
 
 #ifndef SPI_NUM
 #define SPI_NUM 1
 #endif
 
-class pcd8544 : public Print {
+class pcd8544 {
 public:
 	// Constructor for harware SPI
 	pcd8544(uint8_t dc_pin, uint8_t reset_pin, uint8_t cs_pin, uint8_t hardware_spi = 1);
-
-	// Constructor for software SPI.
-	pcd8544(uint8_t dc_pin, uint8_t reset_pin, uint8_t cs_pin, uint8_t sdin_pin, uint8_t sclk_pin);
 
 	// Call this first
 	void begin(void);
@@ -39,18 +31,12 @@ public:
 	// LSB up.
 	void data(uint8_t data);
 
-	// Small numbers. 0<= num <=9 for number and num = 10 for decimal
-	// point. Optional parameter shift will move the numbers up/down.
-	// shift shold be 0,1,2,3 for the digit to be visible.
-	void smallNum(uint8_t num, uint8_t shift = 1);
-	
 	void clearRestOfLine(void);
 	void bitmap(uint8_t *data, uint8_t rows, uint8_t columns);
 
 private:
 	void send(uint8_t dc, uint8_t data);
 	void command(uint8_t data);
-	virtual WRITE_RESULT write(uint8_t ch);
 	void inc_row_column(void);
 	uint8_t dc;
 	uint8_t cs;
