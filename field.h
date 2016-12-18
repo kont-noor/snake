@@ -13,5 +13,4 @@ public:
   void removePosition(uint8_t, uint8_t);
 private:
   screen display;
-  bool map[FIELD_X][FIELD_Y];
 };
